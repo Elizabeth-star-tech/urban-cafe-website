@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Cafe — Family Restaurant in Kenya | Fresh Food, Great Coffee</title>
+<meta name="description" content="Urban Cafe is a family restaurant in Kenya serving fresh, generous meals and great coffee. Rated 5.0 by guests. Open Monday to Friday, 9AM–9PM. Just off the highway, next to Naivas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5EC;
+    --cream-2:#F2E9DA;
+    --ink:#1E2B23;
+    --ink-soft:#3C4A40;
+    --terra:#C1663C;
+    --terra-dark:#A2502C;
+    --gold:#D9A441;
+    --line:rgba(30,43,35,.14);
+    --shadow:0 18px 50px -22px rgba(30,43,35,.45);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.015em}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    font-weight:700;color:var(--terra);display:inline-flex;align-items:center;gap:.6rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--terra);display:block}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:100;
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding:1.1rem 0;
+  }
+  header.scrolled{
+    background:rgba(250,245,236,.94);
+    backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 var(--line);
+    padding:.6rem 0;
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.7rem;font-family:'Fraunces',serif;font-size:1.22rem;font-weight:700;letter-spacing:-.02em;color:var(--cream);transition:color .35s ease}
+  header.scrolled .brand{color:var(--ink)}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;background:var(--cream);color:var(--ink);
+    display:grid;place-items:center;font-size:.95rem;font-weight:700;flex:none;
+    font-family:'Fraunces',serif;transition:background .35s ease,color .35s ease;
+  }
+  header.scrolled .brand-mark{background:var(--ink);color:var(--cream)}
+  .brand small{display:block;font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--cream);opacity:.78;transition:color .35s ease}
+  header.scrolled .brand small{color:var(--ink-soft);opacity:.85}
+  .nav-links{display:flex;align-items:center;gap:1.9rem;font-size:.9rem;font-weight:500;color:var(--cream);transition:color .35s ease}
+  header.scrolled .nav-links{color:var(--ink)}
+  .nav-links a{position:relative;padding:.2rem 0;opacity:.85;transition:opacity .2s}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:0;background:var(--terra);transition:width .28s ease;
+  }
+  .nav-links a:hover{opacity:1}
+  .nav-links a:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+    padding:.85rem 1.5rem;border-radius:100px;font-weight:700;font-size:.88rem;
+    border:1.5px solid transparent;cursor:pointer;transition:transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--terra);color:#fff;box-shadow:0 10px 24px -12px rgba(193,102,60,.9)}
+  .btn-primary:hover{background:var(--terra-dark)}
+  .btn-ghost{border-color:rgba(250,245,236,.5);color:var(--cream);background:rgba(15,26,20,.35)}
+  .btn-ghost:hover{background:rgba(250,245,236,.12)}
+  .btn-dark{background:var(--ink);color:var(--cream)}
+  .btn-dark:hover{background:#0f1a14}
+  .btn-outline{border-color:var(--ink);color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--cream)}
+  .nav-cta{display:inline-flex}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px}
+  .burger span{display:block;width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100svh;display:flex;align-items:flex-end;
+    padding:9rem 0 4.5rem;color:var(--cream);overflow:hidden;
+    background:#0F1A14;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,26,20,.72) 0%,rgba(15,26,20,.42) 38%,rgba(15,26,20,.88) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.6rem;padding:.45rem .95rem;border-radius:100px;
+    background:rgba(250,245,236,.14);border:1px solid rgba(250,245,236,.28);
+    font-size:.76rem;font-weight:500;letter-spacing:.06em;backdrop-filter:blur(6px);margin-bottom:1.6rem;
+  }
+  .stars{color:var(--gold);letter-spacing:.12em;font-size:.8rem}
+  .hero h1{
+    font-size:clamp(3rem,8.2vw,6.4rem);font-weight:600;letter-spacing:-.035em;
+    max-width:15ch;margin-bottom:1.3rem;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p.lede{
+    font-size:clamp(1rem,1.6vw,1.18rem);max-width:52ch;color:rgba(250,245,236,.88);margin-bottom:2.2rem;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:3rem}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:2.4rem;padding-top:1.8rem;border-top:1px solid rgba(250,245,236,.22);
+    font-size:.86rem;
+  }
+  .hero-meta div span{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.62;margin-bottom:.25rem}
+  .hero-meta div strong{font-weight:500;font-size:.95rem}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:6.5rem 0}
+  .sec-head{max-width:640px;margin-bottom:3.2rem}
+  .sec-head h2{font-size:clamp(2rem,4.2vw,3.1rem);margin:1rem 0 1rem}
+  .sec-head p{color:var(--ink-soft);font-size:1.02rem}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--cream)}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4.5rem;align-items:center}
+  .about-copy p{color:var(--ink-soft);margin-bottom:1.15rem;font-size:1.02rem}
+  .about-copy p:first-of-type{font-size:1.14rem;color:var(--ink)}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--line)}
+  .about-stats strong{display:block;font-family:'Fraunces',serif;font-size:2rem;line-height:1;color:var(--terra)}
+  .about-stats span{font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
+  .about-media{position:relative}
+  .about-media img{width:100%;height:520px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .about-media .float-card{
+    position:absolute;bottom:-1.6rem;left:-1.6rem;background:var(--ink);color:var(--cream);
+    padding:1.3rem 1.6rem;border-radius:14px;max-width:230px;box-shadow:var(--shadow);
+  }
+  .about-media .float-card strong{display:block;font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:.2rem}
+  .about-media .float-card span{font-size:.8rem;opacity:.75;line-height:1.5;display:block}
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--ink);color:var(--cream)}
+  .menu .eyebrow{color:var(--gold)}
+  .menu .eyebrow::before{background:var(--gold)}
+  .menu .sec-head p{color:rgba(250,245,236,.7)}
+  .menu-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.6rem}
+  .tab{
+    padding:.6rem 1.25rem;border-radius:100px;border:1px solid rgba(250,245,236,.24);
+    background:transparent;color:rgba(250,245,236,.8);font-family:inherit;font-size:.85rem;font-weight:500;
+    cursor:pointer;transition:.22s;
+  }
+  .tab:hover{border-color:rgba(250,245,236,.5);color:var(--cream)}
+  .tab.active{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 3.5rem}
+  .dish{
+    display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;
+    padding:1.35rem 0;border-bottom:1px solid rgba(250,245,236,.13);
+  }
+  .dish h4{font-size:1.12rem;font-weight:600;margin-bottom:.2rem}
+  .dish p{font-size:.85rem;color:rgba(250,245,236,.6);line-height:1.5;max-width:38ch}
+  .dish .price{font-family:'Fraunces',serif;font-size:1.02rem;color:var(--gold);white-space:nowrap;font-weight:600}
+  .menu-note{margin-top:2.4rem;font-size:.85rem;color:rgba(250,245,236,.55);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+  .menu-note b{color:var(--gold);font-weight:600}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--cream-2)}
+  .gal-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:1rem;
+  }
+  .gal-grid figure{overflow:hidden;border-radius:14px;position:relative;background:var(--ink)}
+  .gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+  .gal-grid figure:hover img{transform:scale(1.06)}
+  .gal-grid figcaption{
+    position:absolute;inset:auto 0 0 0;padding:1.4rem 1.1rem .9rem;font-size:.78rem;letter-spacing:.05em;
+    color:#fff;background:linear-gradient(transparent,rgba(15,26,20,.82));opacity:0;transition:opacity .3s;
+  }
+  .gal-grid figure:hover figcaption{opacity:1}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g4{grid-column:span 2}
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--cream)}
+  .rev-top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+  .score{display:flex;align-items:center;gap:1.2rem}
+  .score .num{font-family:'Fraunces',serif;font-size:3.6rem;line-height:1;color:var(--terra)}
+  .score .meta{font-size:.85rem;color:var(--ink-soft)}
+  .score .meta .stars{display:block;font-size:1rem;margin-bottom:.15rem}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .rev-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:2rem 1.8rem;
+    display:flex;flex-direction:column;gap:1rem;transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .rev-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .rev-card .stars{font-size:.9rem}
+  .rev-card blockquote{font-size:.98rem;color:var(--ink-soft);line-height:1.7;flex:1}
+  .rev-who{display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid var(--line)}
+  .avatar{
+    width:40px;height:40px;border-radius:50%;background:var(--cream-2);color:var(--terra);
+    display:grid;place-items:center;font-weight:700;font-size:.9rem;flex:none;font-family:'Fraunces',serif;
+  }
+  .rev-who strong{display:block;font-size:.9rem;font-weight:700}
+  .rev-who span{font-size:.75rem;color:var(--ink-soft);opacity:.8}
+
+  /* ---------- VISIT ---------- */
+  .visit{background:var(--cream-2)}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+  .hours-card{background:#fff;border-radius:var(--radius);padding:2.2rem;border:1px solid var(--line);box-shadow:0 10px 40px -30px rgba(30,43,35,.6)}
+  .hours-card h3{font-size:1.4rem;margin-bottom:.3rem}
+  .hours-card .sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:1.4rem}
+  .hours-list{list-style:none}
+  .hours-list li{display:flex;justify-content:space-between;padding:.62rem 0;font-size:.92rem;border-bottom:1px dashed var(--line)}
+  .hours-list li:last-child{border-bottom:0}
+  .hours-list li.today{color:var(--terra);font-weight:700}
+  .hours-list li.closed span:last-child{color:#9a8f80}
+  .open-pill{
+    display:inline-flex;align-items:center;gap:.45rem;font-size:.75rem;font-weight:700;
+    padding:.3rem .7rem;border-radius:100px;background:rgba(60,140,90,.12);color:#2f7a4f;margin-bottom:1rem;
+  }
+  .open-pill i{width:7px;height:7px;border-radius:50%;background:#2f7a4f;display:block}
+  .contact-list{list-style:none;margin-top:1.6rem;display:grid;gap:1.1rem}
+  .contact-list li{display:flex;gap:.9rem;align-items:flex-start;font-size:.94rem}
+  .contact-list .ico{
+    width:36px;height:36px;border-radius:10px;background:var(--cream-2);display:grid;place-items:center;flex:none;
+    font-size:1rem;
+  }
+  .contact-list strong{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.1rem;font-weight:700}
+  .contact-list a:hover{color:var(--terra)}
+  .map-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:#fff}
+  .map-card iframe{width:100%;height:340px;border:0;display:block;filter:saturate(.92)}
+  .map-link{display:block;position:relative;line-height:0}
+  .map-link img{width:100%;height:340px;object-fit:cover;display:block;transition:transform .6s ease}
+  .map-link:hover img{transform:scale(1.02)}
+  .map-pin-label{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-190%);
+    background:var(--ink);color:var(--cream);font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.3rem .7rem;border-radius:100px;white-space:nowrap;line-height:1.4;
+    box-shadow:0 6px 16px -8px rgba(0,0,0,.6);
+  }
+  .map-credit{font-size:.68rem;color:var(--ink-soft);opacity:.65;padding:0 1.5rem 1rem}
+  .map-foot{padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+  .map-foot p{font-size:.85rem;color:var(--ink-soft);max-width:30ch}
+  .map-foot .btn{padding:.65rem 1.15rem;font-size:.8rem}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--terra);color:#fff;padding:4.5rem 0;text-align:center}
+  .cta-band h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:.9rem}
+  .cta-band p{opacity:.92;max-width:52ch;margin:0 auto 2rem;font-size:1.02rem}
+  .cta-band .btn-dark{background:var(--ink)}
+  .cta-band .btn-ghost{border-color:rgba(255,255,255,.6)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:rgba(250,245,236,.72);padding:3.5rem 0 2rem;font-size:.88rem}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(250,245,236,.14)}
+  footer .brand{color:var(--cream);margin-bottom:1rem}
+  footer .brand-mark{background:var(--gold);color:var(--ink)}
+  footer h4{color:var(--cream);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem;font-family:'DM Sans',sans-serif;font-weight:700}
+  footer ul{list-style:none;display:grid;gap:.6rem}
+  footer a:hover{color:var(--gold)}
+  .foot-bottom{padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.78rem;opacity:.7}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .about-grid,.visit-grid{grid-template-columns:1fr;gap:3rem}
+    .about-media img{height:400px}
+    .about-media .float-card{left:1rem;bottom:-1.2rem}
+    .rev-grid{grid-template-columns:1fr}
+    .menu-grid{grid-template-columns:1fr;gap:0}
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+    .g1{grid-column:span 2;grid-row:span 1}
+    .g4{grid-column:span 2}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;inset:0 0 auto 0;top:0;padding:5.5rem 1.6rem 2rem;
+      background:var(--cream);flex-direction:column;align-items:flex-start;gap:1.3rem;
+      transform:translateY(-110%);transition:transform .4s cubic-bezier(.2,.7,.3,1);
+      box-shadow:0 20px 40px -20px rgba(30,43,35,.4);font-size:1.05rem;color:var(--ink);
+    }
+    .nav-links.open{transform:translateY(0)}
+    .nav-cta{display:none}
+    .burger{display:flex;z-index:110}
+    .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .burger.open span:nth-child(2){opacity:0}
+    .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    section{padding:4.5rem 0}
+    .hero{padding:7.5rem 0 3.5rem;min-height:92svh}
+    .hero-meta{gap:1.4rem 2rem}
+    .hero-meta div strong{font-size:.88rem}
+    .about-stats{grid-template-columns:1fr 1fr;gap:1.4rem}
+    .rev-top{flex-direction:column;align-items:flex-start}
+    .foot-grid{grid-template-columns:1fr}
+    .gal-grid{grid-auto-rows:150px}
+    .map-card iframe{height:280px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark">UC</span>
+      <span>Urban Cafe<small>Family Restaurant</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a href="tel:+254700000000" class="btn btn-primary nav-cta">Call us</a>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="images/hero.jpg" alt="Warm, plant-filled interior of Urban Cafe" fetchpriority="high">
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-badge">
+      <span class="stars">★★★★★</span>
+      <span>5.0 on Google &middot; 4 reviews</span>
+    </div>
+    <h1>Good food, <em>good company</em>, right off the highway.</h1>
+    <p class="lede">Urban Cafe is a family restaurant in Kenya serving generous, freshly prepared meals and proper coffee — a cosy stop for a quick bite, a family lunch, or a break on the road.</p>
+    <div class="hero-actions">
+      <a href="tel:+254700000000" class="btn btn-primary">Call to reserve</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=-1.1679943,36.6403075" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
+    </div>
+    <div class="hero-meta">
+      <div><span>Open today</span><strong>9:00 AM – 9:00 PM</strong></div>
+      <div><span>Find us</span><strong>RJJR+R43, Kenya</strong></div>
+      <div><span>Price per person</span><strong>KES 500 – 1,000</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">Our story</span>
+      <h2 style="font-size:clamp(2rem,4.2vw,3.1rem);margin:1rem 0 1.4rem">A neighbourhood table with a warm welcome.</h2>
+      <p>Urban Cafe began with a simple idea: serve the kind of food you'd want to share with family, in a space that feels like an easy extension of home.</p>
+      <p>Our kitchen cooks to order — from hearty breakfasts and slow-grilled meats to fragrant rice dishes and fresh chapati — using ingredients picked up locally each morning. The coffee is ground fresh, the portions are generous, and the team knows most guests by name.</p>
+      <p>Whether you're stopping in after shopping next door at Naivas, breaking a long drive, or gathering the family for a weekend lunch, there's a seat waiting for you.</p>
+      <div class="about-stats">
+        <div><strong>5.0</strong><span>Google rating</span></div>
+        <div><strong>9–9</strong><span>Mon to Fri</span></div>
+        <div><strong>11+</strong><span>Photos shared</span></div>
+      </div>
+    </div>
+    <div class="about-media reveal">
+      <img src="images/exterior.jpg" alt="Urban Cafe entrance framed by greenery">
+      <div class="float-card">
+        <strong>Easy to reach</strong>
+        <span>Just off the highway, right next to Naivas supermarket — with parking on site.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we serve</span>
+      <h2>Fresh from the kitchen, all day.</h2>
+      <p>A short, honest menu built around what our regulars order most. Everything is prepared to order — tell us how you like it.</p>
+    </div>
+
+    <div class="menu-tabs reveal" role="tablist" aria-label="Menu categories">
+      <button class="tab active" data-cat="mains" role="tab" aria-selected="true">Mains</button>
+      <button class="tab" data-cat="breakfast" role="tab" aria-selected="false">Breakfast</button>
+      <button class="tab" data-cat="drinks" role="tab" aria-selected="false">Drinks &amp; Coffee</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- MAINS -->
+      <div class="dish" data-cat="mains"><div><h4>Nyama Choma Platter</h4><p>Charcoal-grilled goat or beef, served with kachumbari and ugali. Made for sharing.</p></div><span class="price">KES 850</span></div>
+      <div class="dish" data-cat="mains"><div><h4>Chicken Pilau</h4><p>Spiced rice slow-cooked with tender chicken, cardamom and cloves.</p></div><span class="price">KES 650</span></div>
+      <div class="dish" data-cat="mains"><div><h4>Beef Stew &amp; Chapati</h4><p>Slow-braised beef in a rich tomato gravy with two soft chapatis.</p></div><span class="price">KES 600</span></div>
+      <div class="dish" data-cat="mains"><div><h4>Grilled Tilapia</h4><p>Whole fish grilled with lemon and herbs, with greens and rice.</p></div><span class="price">KES 900</span></div>
+      <div class="dish" data-cat="mains"><div><h4>Jollof Rice with Chicken</h4><p>Smoky one-pot rice with a quarter grilled chicken and fried plantain.</p></div><span class="price">KES 700</span></div>
+      <div class="dish" data-cat="mains"><div><h4>Vegetable Curry</h4><p>Seasonal vegetables in coconut curry with rice or chapati.</p></div><span class="price">KES 520</span></div>
+
+      <!-- BREAKFAST -->
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Full Kenyan Breakfast</h4><p>Eggs, sausage, grilled tomato, mandazi and a pot of tea or coffee.</p></div><span class="price">KES 550</span></div>
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Chapati &amp; Beans</h4><p>Two warm chapatis with slow-cooked beans in coconut sauce.</p></div><span class="price">KES 350</span></div>
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Uji &amp; Mandazi</h4><p>Millet porridge served warm with two fresh mandazi.</p></div><span class="price">KES 250</span></div>
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Avocado Toast</h4><p>Sourdough, smashed avocado, chilli and a poached egg.</p></div><span class="price">KES 480</span></div>
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Omelette of Your Choice</h4><p>Three-egg omelette with cheese, onion, tomato or peppers.</p></div><span class="price">KES 400</span></div>
+      <div class="dish" data-cat="breakfast" hidden><div><h4>Fruit Bowl</h4><p>Fresh seasonal fruit — mango, pineapple, banana and watermelon.</p></div><span class="price">KES 300</span></div>
+
+      <!-- DRINKS -->
+      <div class="dish" data-cat="drinks" hidden><div><h4>Kenyan AA Coffee</h4><p>Freshly ground, brewed black or with hot milk on the side.</p></div><span class="price">KES 200</span></div>
+      <div class="dish" data-cat="drinks" hidden><div><h4>Cappuccino / Latte</h4><p>Double shot with silky steamed milk and a little cocoa.</p></div><span class="price">KES 280</span></div>
+      <div class="dish" data-cat="drinks" hidden><div><h4>Chai ya Maziwa</h4><p>Spiced milk tea brewed the traditional way.</p></div><span class="price">KES 120</span></div>
+      <div class="dish" data-cat="drinks" hidden><div><h4>Fresh Passion Juice</h4><p>Squeezed to order, lightly sweetened. Also available as a jug.</p></div><span class="price">KES 250</span></div>
+      <div class="dish" data-cat="drinks" hidden><div><h4>Dawa Tea</h4><p>Ginger, honey and lemon — our go-to for a cold morning.</p></div><span class="price">KES 180</span></div>
+      <div class="dish" data-cat="drinks" hidden><div><h4>Bottled Water &amp; Sodas</h4><p>Chilled, served with a glass and lime on request.</p></div><span class="price">KES 100</span></div>
+    </div>
+
+    <p class="menu-note reveal">Average spend <b>KES 500 – 1,000</b> per person &middot; Vegetarian options available &middot; Takeaway welcome</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A look inside</span>
+      <h2>Come see the place.</h2>
+      <p>Warm light, wooden tables and a kitchen you can hear working. Here's a taste of what to expect.</p>
+    </div>
+    <div class="gal-grid reveal">
+      <figure class="g1"><img src="images/coffee.jpg" alt="Latte art and fresh banana bread on a cafe table" loading="lazy"><figcaption>Freshly brewed, every morning</figcaption></figure>
+      <figure><img src="images/jollof.jpg" alt="Jollof rice served with grilled chicken" loading="lazy"><figcaption>Jollof &amp; grilled chicken</figcaption></figure>
+      <figure><img src="images/cappuccino.jpg" alt="Cappuccino with latte art" loading="lazy"><figcaption>Proper cappuccino</figcaption></figure>
+      <figure class="g4"><img src="images/nyama.jpg" alt="Nyama choma sharing platter" loading="lazy"><figcaption>Nyama choma, made for sharing</figcaption></figure>
+      <figure><img src="images/pilau.jpg" alt="Kenyan pilau rice" loading="lazy"><figcaption>Spiced pilau</figcaption></figure>
+      <figure><img src="images/exterior.jpg" alt="Cafe entrance with greenery" loading="lazy"><figcaption>Our entrance</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="rev-top reveal">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Guest reviews</span>
+        <h2>What people are saying.</h2>
+      </div>
+      <div class="score">
+        <span class="num">5.0</span>
+        <div class="meta">
+          <span class="stars">★★★★★</span>
+          Based on 4 Google reviews
+        </div>
+      </div>
+    </div>
+    <div class="rev-grid">
+      <article class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“Just been shopping at Naivas literally next door. This place is awesome — nice friendly staff, fast service, food and drinks absolutely brilliant and delicious. Well worth stopping by. Even if you're just driving, it's right off the highway.”</blockquote>
+        <div class="rev-who">
+          <span class="avatar">FH</span>
+          <div><strong>Frank Hilton</strong><span>Local Guide &middot; 67 reviews</span></div>
+        </div>
+      </article>
+      <article class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“A fantastic, cozy little place! I would highly recommend. So convenient since the supermarket is just next door. Great meals and variety. Worth all the stars.”</blockquote>
+        <div class="rev-who">
+          <span class="avatar">FG</span>
+          <div><strong>Faith Gaturu</strong><span>Google review</span></div>
+        </div>
+      </article>
+      <article class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“Good value for a proper sit-down meal — around KES 500 to 1,000 per person. Generous portions and a relaxed atmosphere.”</blockquote>
+        <div class="rev-who">
+          <span class="avatar">MK</span>
+          <div><strong>Moses Katembu</strong><span>Local Guide &middot; 8 reviews</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Plan your visit</span>
+      <h2>Find us, and come hungry.</h2>
+      <p>We're open five days a week. Walk-ins are always welcome — for larger groups, a quick call ahead helps us set the table.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="reveal">
+        <div class="hours-card">
+          <span class="open-pill"><i></i> Open now &middot; closes 9 PM</span>
+          <h3>Opening hours</h3>
+          <p class="sub">Monday to Friday &middot; closed weekends</p>
+          <ul class="hours-list" id="hoursList">
+            <li data-day="1"><span>Monday</span><span>9:00 AM – 9:00 PM</span></li>
+            <li data-day="2"><span>Tuesday</span><span>9:00 AM – 9:00 PM</span></li>
+            <li data-day="3"><span>Wednesday</span><span>9:00 AM – 9:00 PM</span></li>
+            <li data-day="4"><span>Thursday</span><span>9:00 AM – 9:00 PM</span></li>
+            <li data-day="5"><span>Friday</span><span>9:00 AM – 9:00 PM</span></li>
+            <li data-day="6" class="closed"><span>Saturday</span><span>Closed</span></li>
+            <li data-day="0" class="closed"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+        </div>
+
+        <ul class="contact-list">
+          <li>
+            <span class="ico">📍</span>
+            <div><strong>Address</strong>RJJR+R43, Kenya<br><span style="font-size:.82rem;opacity:.75">Just off the highway, next to Naivas supermarket</span></div>
+          </li>
+          <li>
+            <span class="ico">📞</span>
+            <div><strong>Phone</strong><a href="tel:+254700000000">+254 700 000 000</a></div>
+          </li>
+          <li>
+            <span class="ico">✉️</span>
+            <div><strong>Email</strong><a href="mailto:hello@urbancafe.co.ke">hello@urbancafe.co.ke</a></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <div class="map-card">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=-1.1679943,36.6403075" target="_blank" rel="noopener" class="map-link" aria-label="Open Urban Cafe location in Google Maps">
+            <img src="images/map.jpg" alt="Map showing the location of Urban Cafe in Kenya" loading="lazy" width="1000" height="520">
+            <span class="map-pin-label">Urban Cafe</span>
+          </a>
+          <div class="map-foot">
+            <p>RJJR+R43, Kenya — a short turn off the main highway.</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=-1.1679943,36.6403075" target="_blank" rel="noopener" class="btn btn-outline">Open in Maps</a>
+          </div>
+          <p class="map-credit">Map data © OpenStreetMap contributors</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Save your seat at the table.</h2>
+    <p>Bring the family, meet a friend, or grab a quick plate on the road. We'll have the coffee ready.</p>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+      <a href="tel:+254700000000" class="btn btn-dark">Call +254 700 000 000</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=-1.1679943,36.6403075" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand">
+          <span class="brand-mark">UC</span>
+          <span>Urban Cafe<small>Family Restaurant</small></span>
+        </a>
+        <p style="max-width:34ch">Fresh food, proper coffee and a warm welcome in Kenya. Open Monday to Friday, 9 AM to 9 PM.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>RJJR+R43, Kenya</li>
+          <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+          <li><a href="mailto:hello@urbancafe.co.ke">hello@urbancafe.co.ke</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=-1.1679943,36.6403075" target="_blank" rel="noopener">Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Urban Cafe. All rights reserved.</span>
+      <span>Family restaurant &middot; Kenya</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Sticky header */
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if (window.scrollY > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Mobile nav */
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* Menu tabs */
+  var tabs = document.querySelectorAll('.tab');
+  var dishes = document.querySelectorAll('.dish');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var cat = tab.getAttribute('data-cat');
+      tabs.forEach(function(t){
+        t.classList.remove('active');
+        t.setAttribute('aria-selected','false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      dishes.forEach(function(d){
+        d.hidden = d.getAttribute('data-cat') !== cat;
+      });
+    });
+  });
+
+  /* Highlight today's hours */
+  var today = new Date().getDay();
+  var rows = document.querySelectorAll('#hoursList li');
+  rows.forEach(function(li){
+    if (Number(li.getAttribute('data-day')) === today) li.classList.add('today');
+  });
+
+  /* Reveal on scroll */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* Year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
